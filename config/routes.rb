@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'updates#index'
-  resources :updates, only: [:new, :create]
-  get 'user_updates', to: 'updates#user_updates'
+  root to: 'tasks#index'
+  resources :tasks, only: [:new, :create]
+  get 'user_tasks', to: 'tasks#user_tasks'
   resources :tags, only: [:index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

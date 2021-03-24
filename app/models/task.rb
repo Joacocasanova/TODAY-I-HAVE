@@ -1,7 +1,7 @@
-class Update < ApplicationRecord
-  has_many :tags, through: :update_categories
+class Task < ApplicationRecord
   belongs_to :user
-  has_many :update_categories
+  has_many :task_categories
+  has_many :tags, through: :task_categories
 
   validates :title, :content, presence: true
   validates_associated :tags
