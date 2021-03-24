@@ -1,0 +1,7 @@
+<tr id="<%= task.id %>">
+  <td><%= task.name %></td>
+  <td><%= task.content%></td>
+  <td>
+    <%= link_to "Editar", edit_task_path(task), remote: true %>
+  </td>
+</tr>
