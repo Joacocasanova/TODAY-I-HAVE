@@ -8,6 +8,7 @@
 
 puts "Cleaning database.."
 
+TaskCategory.destroy_all
 User.destroy_all
 Task.destroy_all
 puts "Creating database.."
