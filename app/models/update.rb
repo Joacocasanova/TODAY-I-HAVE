@@ -4,6 +4,6 @@ class Update < ApplicationRecord
   has_many :update_categories
 
   validates :title, :content, presence: true
-  validates :tag, presence: true
-  validates_uniqueness_of :title, scope: [:content_id, :created_at_id]
+  validates_associated :tags
+  validates_uniqueness_of :title, scope: [:content, :created_at]
 end
