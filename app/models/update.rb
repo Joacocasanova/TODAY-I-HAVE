@@ -5,5 +5,5 @@ class Update < ApplicationRecord
 
   validates :title, :content, presence: true
   validates_associated :tags
-  validates_uniqueness_of :title, scope: [:content, :created_at]
+  validates_uniqueness_of :title, scope: [:content, :created_at] #validate that title, content and date are unique
 end
