@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
-  has_many :updates_categories
-  has_many :updates, through: :update_categories
+  has_many :task_categories
+  has_many :tasks, through: :task_categories
 
   validates :name, presence: true
 end

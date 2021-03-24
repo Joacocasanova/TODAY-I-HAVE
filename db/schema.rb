@@ -21,22 +21,22 @@ ActiveRecord::Schema.define(version: 2021_03_23_230545) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "update_categories", force: :cascade do |t|
-    t.bigint "update_id", null: false
+  create_table "task_categories", force: :cascade do |t|
+    t.bigint "task_id", null: false
     t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tag_id"], name: "index_update_categories_on_tag_id"
-    t.index ["update_id"], name: "index_update_categories_on_update_id"
+    t.index ["tag_id"], name: "index_task_categories_on_tag_id"
+    t.index ["task_id"], name: "index_task_categories_on_task_id"
   end
 
-  create_table "updates", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_updates_on_user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_230545) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "update_categories", "tags"
-  add_foreign_key "update_categories", "updates"
-  add_foreign_key "updates", "users"
+  add_foreign_key "task_categories", "tags"
+  add_foreign_key "task_categories", "tasks"
+  add_foreign_key "tasks", "users"
 end
