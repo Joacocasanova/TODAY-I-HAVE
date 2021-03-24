@@ -1,13 +1,16 @@
 <h1> Index!</h1>
 
-<% @tasks.each do |task| %>
-  <% if task.created_at.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y')  %>
-    <h1>Today</h1>
-  <% elsif task.created_at.strftime('%d/%m/%Y') == Date.today.strftime('%d/%m/%Y') - 1 %>
-    <h1>Yesterday</h1>
+<% @tasks.sort.reverse.map do |task_key, task_value| %>
+
+  <% if task_key == Date.today %>
+  <h1>Today</h1>
+  <% elsif task_key == Date.today - 1 %>
+  <h1>Yesterday</h1>
   <% else %>
-    <h1><%= task.created_at.strftime('%d/%m/%Y') %></h1>
+  <h1><%= task_key %></h1>
   <% end %>
-  <h2><%= task.title %></h2>
-  <p><%= task.content %></p>
+  <% task_value.each do |t| %>
+  <h2><%= t.title %></h2>
+  <p><%= t.content %></p>
+  <% end %>
 <% end %>
