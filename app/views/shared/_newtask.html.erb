@@ -1,23 +1,3 @@
-<h1> Index!</h1>
-
-<% @tasks.sort.reverse.map do |task_key, task_value| %>
-
-  <% if task_key == Date.today %>
-  <h1>Today</h1>
-  <% elsif task_key == Date.today - 1 %>
-  <h1>Yesterday</h1>
-  <% else %>
-  <h1><%= task_key %></h1>
-  <% end %>
-  <% task_value.each do |t| %>
-  <h2><%= t.title %></h2>
-  <p><%= t.content %></p>
-  <% end %>
-<% end %>
-
-
-<%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
-
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -28,12 +8,12 @@
               </button>
             </div>
             <div class="modal-body">
-              <%= simple_form_for [ @task ]  do |f| %>
+              <%= simple_form_for [ @task, @tag ] do |f| %>
                 <%= f.input :title, label: "Title", placeholder: "Task Title" %>
                 <%= f.input :content, label: "Content", placeholder: "Task Content" %>
-                <%= f.input :tags, label: "Tag Name", placeholder: "Tag name" %>
+                <%= f.input :tag, label: "Tag", placeholder: "Tag" %>
 
-                <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
+                <h3><%= Date.Today.strf('%d/%m/%Y') %></h3>
 
                 <%= f.submit "Submit", class: "btn btn-primary" %>
               <% end %>
