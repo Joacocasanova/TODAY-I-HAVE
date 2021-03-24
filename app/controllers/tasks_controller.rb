@@ -8,6 +8,6 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @tasks = Task.all.group_by_day(&:created_at)
   end
 end
