@@ -18,33 +18,42 @@
   <% end %>
 <% end %>
 
+<br>
+<!-- <% if @today_tasks.size > 0 %>
+  <button type="button" class="btn btn-secondary btn-lg" disabled>New Task</button>
+  <p>¡You Can only post one Task per day!</p>
+<% else %>
+  <%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
+<% end %> !-->
+<br>
 
 <%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Datos de tu barbería!</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= simple_form_for [ @task ]  do |f| %>
-                <%= f.input :title, label: "Title", placeholder: "Task Title" %>
-                <%= f.input :content, label: "Content", placeholder: "Task Content" %>
-                  <%= f.simple_fields_for :tags do |p| %>
-                    <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
-                  <% end %>
-                <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
 
-                <%= f.submit "Submit", class: "btn btn-primary" %>
-              <% end %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
-        </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Task Content!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <%= simple_form_for [ @task ]  do |f| %>
+          <%= f.input :title, label: "Title", placeholder: "Task Title" %>
+          <%= f.input :content, label: "Content", placeholder: "Task Content" %>
+            <%= f.simple_fields_for :tags do |p| %>
+              <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
+            <% end %>
+          <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
+
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

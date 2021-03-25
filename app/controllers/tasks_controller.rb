@@ -16,6 +16,7 @@ class TasksController < ApplicationController
     @tasks = Task.all.group_by_day(&:created_at)
     @task = Task.new
     @task.tags.build
+    @today_tasks = Task.all.where(user_id: current_user, created_at: Time.now.midnight..Time.now)
   end
 
   private
