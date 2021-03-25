@@ -12,6 +12,9 @@
   <% task_value.each do |t| %>
   <h2><%= t.title %></h2>
   <p><%= t.content %></p>
+    <% t.tags.each do |tag| %>
+      <%= tag.name  %>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -31,8 +34,9 @@
               <%= simple_form_for [ @task ]  do |f| %>
                 <%= f.input :title, label: "Title", placeholder: "Task Title" %>
                 <%= f.input :content, label: "Content", placeholder: "Task Content" %>
-                <%= f.input :tags, label: "Tag Name", placeholder: "Tag name" %>
-
+                  <%= f.simple_fields_for :tags do |p| %>
+                    <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
+                  <% end %>
                 <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
 
                 <%= f.submit "Submit", class: "btn btn-primary" %>
