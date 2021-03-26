@@ -23,6 +23,19 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
+  <div class="row">
+    <div class="col-sm-4">
+      <% if resource.avatar.attached? %>
+        <%= cl_image_tag resource.avatar.key, class:"rounded-circle",height: 100, width: 100 %>
+      <% else %>
+        <%= image_tag 'https://res.cloudinary.com/dmtio0viw/image/upload/v1613231512/Turna/default_avatar_ybtke3.png', height: 100, width: 100, class:"rounded-circle" %>
+      <% end %>
+    </div>
+    <div class="col-sm-8 mt-2">
+      <%= f.input :avatar, as: :file %>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, "Update" %>
   </div>

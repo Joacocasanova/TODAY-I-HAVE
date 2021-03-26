@@ -1,35 +1,25 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<nav id="top-navbar" class="navbar fixed-top navbar-light bg-light">
+  <div class="d-flex justify-content-between w-100">
+    <%= link_to root_path do %>
+      <img src="https://res.cloudinary.com/dmtio0viw/image/upload/v1616729127/TODAY%20I%20HAVE/todayihavelogo12_s3cdrj.png" alt=" Logo" style="height:50px;width:100px">
     <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <div class="navbar-registriation d-flex">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
+        <div class="navbar-avatar m-0 pr-0">
+          <% if current_user.avatar.attached? %>
+            <%= cl_image_tag current_user.avatar.key, style:"height:40px;width:40px", class:"rounded-circle ml-2" %>
+          <% else %>
+            <%= image_tag 'https://res.cloudinary.com/dmtio0viw/image/upload/v1613231512/Turna/default_avatar_ybtke3.png' , style:"height:40px;width:40px", class:"rounded-circle" %>
+          <% end %>
+        </div>
+        <strong><%= link_to "My Profile", edit_user_registration_path, class: "nav-link", style:"color: black" %></strong>
+        <strong><span><%= link_to "Log Out", destroy_user_session_path, :method => :delete, class: "nav-link mr-0", style:"color: black" %></span></strong>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <div class="d-flex m-0 pr-0 pl-4">
+          <strong><%= link_to "Sign In", new_user_registration_path, class: "nav-link", style:"color: black" %></strong>
+          <strong><%= link_to "Log In", new_user_session_path, class: "nav-link mr-1", style:"color: black" %></strong>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </div>
-</div>
+</nav>

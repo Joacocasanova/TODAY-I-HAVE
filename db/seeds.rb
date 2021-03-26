@@ -13,8 +13,12 @@ User.destroy_all
 Task.destroy_all
 puts "Creating database.."
 
-joaco_user = User.new(email: "joacocasanova@gmail.com", password: "123456")
-nati_user = User.new(email: 'nataliagatti@gmail.com', password:'123456')
+joaco_user = User.new(name: "Joaquin", last_name: "Casanova", email: "joacocasanova@gmail.com", password: "123456")
+nati_user = User.new(name: "Natalia", last_name: "Gatti",email: 'nataliagatti@gmail.com', password:'123456')
+
+joaco_user.avatar.attach(io: URI.open('https://res.cloudinary.com/dmtio0viw/image/upload/v1613343080/Turna/joacoavatar_kkzo21.jpg'), filename: 'default_avatar.png', content_type: 'image/png')
+
+nati_user.avatar.attach(io: URI.open('https://res.cloudinary.com/dmtio0viw/image/upload/v1616725619/TODAY%20I%20HAVE/natigatti_ts7nmb.jpg'), filename: 'default_avatar.png', content_type: 'image/png')
 
 joaco_user.save
 nati_user.save
