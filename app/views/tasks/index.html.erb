@@ -1,59 +1,79 @@
-<h1> Index!</h1>
+<div class="container" style="height:100px">
+</div>
+<div class="container">
+  <h1 class="mb-3 title-font"> ¡Lets Review our tasks together!</h1>
 
-
-<% @tasks.sort.reverse.map do |task_key, task_value| %>
-
-  <% if task_key == Date.today %>
-  <h1>Today</h1>
-  <% elsif task_key == Date.today - 1 %>
-  <h1>Yesterday</h1>
-  <% else %>
-  <h1><%= task_key %></h1>
-  <% end %>
-  <% task_value.each do |t| %>
-  <h2><%= t.title %></h2>
-  <p><%= t.content %></p>
-    <% t.tags.each do |tag| %>
-      <%= tag.name  %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<br>
-<!-- <% if @today_tasks.size > 0 %>
-  <button type="button" class="btn btn-secondary btn-lg" disabled>New Task</button>
-  <p>¡You Can only post one Task per day!</p>
-<% else %>
-  <%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
-<% end %> !-->
-<br>
-
-<%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¡Task Content!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [ @task ]  do |f| %>
-          <%= f.input :title, label: "Title", placeholder: "Task Title" %>
-          <%= f.input :content, label: "Content", placeholder: "Task Content" %>
-            <%= f.simple_fields_for :tags do |p| %>
-              <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
-            <% end %>
-          <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
-
-          <%= f.submit "Submit", class: "btn btn-primary" %>
+  <div class="row">
+    <% @tasks.sort.reverse.map do |task_key, task_value| %>
+      <div class="col-12">
+        <% if task_key == Date.today %>
+          <h1 class="m-3 title-font">Today I have..</h1>
+        <% elsif task_key == Date.today - 1 %>
+          <h1 class="m-3 title-font">Yesterday I have..</h1>
+        <% else %>
+          <h1 class="m-3 title-font">Past <%= task_key %> I have..</h1>
         <% end %>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      <% task_value.each do |t| %>
+        <div class="col-12">
+          <div class="notification">
+            <%= cl_image_tag t.user.avatar.key, class:"avatar-large"%>
+            <div class="notification-content">
+              <p><small><%= t.title %></small></p>
+              <p class="align-self-center"><%= t.content[0..20].. %></p>
+              <% t.tags.each do |tag| %>
+                <%= tag.name  %>
+              <% end %>
+            </div>
+
+            <div class="notification-actions">
+              <a href="#">Update <i class="fas fa-pencil-alt"></i></a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+
+
+
+  <br>
+  <!-- <% if @today_tasks.size > 0 %>
+    <button type="button" class="btn btn-secondary btn-lg" disabled>New Task</button>
+    <p>¡You Can only post one Task per day!</p>
+  <% else %>
+    <%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
+  <% end %> !-->
+  <br>
+
+  <%= link_to "New Task", new_task_path, remote: true, class: "btn btn-primary", data: { toggle:"modal", target:"#exampleModal" } %>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¡Task Content!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for [ @task ]  do |f| %>
+            <%= f.input :title, label: "Title", placeholder: "Task Title" %>
+            <%= f.input :content, label: "Content", placeholder: "Task Content" %>
+              <%= f.simple_fields_for :tags do |p| %>
+                <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
+              <% end %>
+            <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
+
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
