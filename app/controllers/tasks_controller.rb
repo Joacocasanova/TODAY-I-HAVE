@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :new ]
+  skip_before_action :authenticate_user!, only: [ :index, :new, :show ]
 
   def create
     @task = Task.new(task_params)
@@ -12,6 +12,12 @@ class TasksController < ApplicationController
       end
       redirect_to root_path
     end
+  end
+
+  def new
+  end
+
+  def show
   end
 
   def index
