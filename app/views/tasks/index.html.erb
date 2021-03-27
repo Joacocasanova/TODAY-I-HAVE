@@ -15,21 +15,19 @@
         <% end %>
       </div>
       <% task_value.each do |t| %>
-        <div class="col-12">
-          <div class="notification">
-            <%= cl_image_tag t.user.avatar.key, class:"avatar-large"%>
-            <div class="notification-content">
-              <p><small><%= t.title %></small></p>
-              <p class="align-self-center"><%= t.content[0..20].. %></p>
-              <% t.tags.each do |tag| %>
-                <%= tag.name  %>
-              <% end %>
+        <div class="col-12 hola">
+          <%= link_to task_path(id: t.id) do %>
+            <div class="notification">
+              <%= cl_image_tag t.user.avatar.key, class:"avatar-large"%>
+              <div class="notification-content">
+                <p><small><%= t.title %></small></p>
+                <p class="content"><%= t.content[0..20].. %></p>
+                <% t.tags.each do |tag| %>
+                  <%= tag.name  %>
+                <% end %>
+              </div>
             </div>
-
-            <div class="notification-actions">
-              <a href="#">Update <i class="fas fa-pencil-alt"></i></a>
-            </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     <% end %>
@@ -62,7 +60,7 @@
         <div class="modal-body">
           <%= simple_form_for [ @task ]  do |f| %>
             <%= f.input :title, label: "Title", placeholder: "Task Title" %>
-            <%= f.input :content, label: "Content", placeholder: "Task Content" %>
+            <%= f.input :content, as: :text, label: "Content", placeholder: "Task Content"  %>
               <%= f.simple_fields_for :tags do |p| %>
                 <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
               <% end %>
