@@ -44,9 +44,15 @@
         <%= simple_form_for [ @task ]  do |f| %>
           <%= f.input :title, label: "Title", placeholder: "Task Title" %>
           <%= f.input :content, label: "Content", placeholder: "Task Content" %>
-            <%= f.simple_fields_for :tags do |p| %>
-              <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
-            <% end %>
+          <%= f.simple_fields_for :tags do |p| %>
+            <%= p.input :name, label: "Tag Name", placeholder: "Tag name" %>
+
+          <% end %>
+
+
+
+
+
           <h3><%= Date.today.strftime('%d/%m/%Y') %></h3>
 
           <%= f.submit "Submit", class: "btn btn-primary" %>
