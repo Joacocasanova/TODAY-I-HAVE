@@ -1,0 +1,106 @@
+#form-review {
+  background: white;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.user_name{
+  font-size:14px;
+  font-weight: bold;
+}
+
+.fa-star {
+  color: #0a3e6e
+}
+
+.today-primary-btn {
+  color: #fff;
+  background-color: #0a3e6e;
+  border-color: #0a3e6e;
+}
+
+.name-color {
+  color:#0a3e6e;
+  font-weight: bold;
+}
+
+
+.card-product {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 0.2rem;
+}
+
+@media only screen and (max-width: 667px) {
+  .task-title {
+    font-size: 20px;
+  }
+}
+
+.title-font {
+  color: #0a3e6e;
+  font-weight:bold;
+}
+
+.hov-decoration {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.content {
+  color:black;
+}
+
+.pill-button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #0a3e6e;
+  color: white;
+  border: 1px solid #7E73FF;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.pill-button:hover {
+  background-color: #f1f1f1;
+  color: #0a3e6e;
+}
+
+@media only screen and (max-width: 667px) {
+  .pill-button {
+    font-size: 0.6rem;
+  }
+}

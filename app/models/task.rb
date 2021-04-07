@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   belongs_to :user
   has_many :task_categories
   has_many :tags, through: :task_categories
+  has_many :reviews, dependent: :destroy
 
   accepts_nested_attributes_for :tags
   validates :title, :content, presence: true

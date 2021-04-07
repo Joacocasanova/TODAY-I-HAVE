@@ -1,17 +1,17 @@
 <div class="container" style="height:100px">
 </div>
 <div class="container">
-  <h1 class="mb-3 title-font"> ¡Lets Review our tasks together!</h1>
+  <h1 class="mb-3 title-font task-title"> ¡Lets Review our tasks together!</h1>
 
   <div class="row">
     <% @tasks.sort.reverse.map do |task_key, task_value| %>
       <div class="col-12">
         <% if task_key == Date.today %>
-          <h1 class="m-3 title-font">Today I have..</h1>
+          <h1 class="m-3 title-font task-title">Today I have..</h1>
         <% elsif task_key == Date.today - 1 %>
-          <h1 class="m-3 title-font">Yesterday I have..</h1>
+          <h1 class="m-3 title-font task-title">Yesterday I have..</h1>
         <% else %>
-          <h1 class="m-3 title-font">Past <%= task_key %> I have..</h1>
+          <h1 class="m-3 title-font task-title">Past <%= task_key %> I have..</h1>
         <% end %>
       </div>
       <% task_value.each do |t| %>
@@ -23,7 +23,7 @@
                 <p><small><%= t.title %></small></p>
                 <p class="content"><%= t.content[0..20].. %></p>
                 <% t.tags.each do |tag| %>
-                  <%= tag.name  %>
+                  <button class="pill-button"><%= tag.name  %></button>
                 <% end %>
               </div>
             </div>
